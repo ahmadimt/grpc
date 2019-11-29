@@ -48,7 +48,8 @@ INFO: Server started, listening on port 50,051
 ````
 
 ### Sending message from Client
-NOTE: Please make sure the server is up and running before running the client.
+ 
+ __Please make sure the server is up and running before running the client.__
 
 Navigate to `HelloWorldClient` class present in `com.imti` package, right click on it and run the `main` method. This should print something like this on console:
 ````
