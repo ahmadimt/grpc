@@ -1,5 +1,7 @@
 # Getting Started with gRPC
 
+This is a simple `Hello World!` application, created to learn the basics of gRPC.
+
 ## Project Structure
 The project is a Gradle multi-projects build. 
 
