@@ -82,7 +82,7 @@ startScripts.enabled = false
 
 application {
     // Define the main class for the application.
-    mainClassName = 'com.imti.App'
+    mainClassName = 'com.imti.HelloWorldServer'
 }
 
 

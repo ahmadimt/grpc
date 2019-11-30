@@ -10,3 +10,5 @@
 rootProject.name = 'grpc_code'
 include 'grpc_server'
 include 'grpc_client'
+include 'gnmi'
+

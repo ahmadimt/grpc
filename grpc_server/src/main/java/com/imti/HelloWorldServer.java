@@ -8,6 +8,7 @@ import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
 import java.io.IOException;
 import java.util.Objects;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,7 +31,7 @@ public class HelloWorldServer {
   public void start() throws IOException {
     int port = 50051;
     server = ServerBuilder.forPort(port)
-        .addService(new GreeterImpl())
+        .addService(new GreeterImpl(UUID.randomUUID().toString()))
         .build().start();
     logger.log(Level.INFO, "Server started, listening on port {0}", port);
     Runtime.getRuntime().addShutdownHook(new Thread() {
@@ -58,11 +59,17 @@ public class HelloWorldServer {
 
   static class GreeterImpl extends GreeterImplBase {
 
+    String name;
+
+    GreeterImpl(String name) {
+      this.name = name;
+    }
+
     @Override
     public void sayHello(HelloRequest request,
         StreamObserver<HelloResponse> responseObserver) {
       HelloResponse response = HelloResponse.newBuilder()
-          .setMessage("Server says hello " + request.getName())
+          .setMessage(name + " server says hello " + request.getName())
           .build();
       responseObserver.onNext(response);
       responseObserver.onCompleted();
