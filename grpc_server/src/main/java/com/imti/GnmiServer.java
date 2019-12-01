@@ -17,12 +17,20 @@ public class GnmiServer extends gNMIImplBase {
   @Override
   public StreamObserver<SubscribeRequest> subscribe(
       StreamObserver<SubscribeResponse> responseObserver) {
+
     return new StreamObserver<SubscribeRequest>() {
       @Override
       public void onNext(final SubscribeRequest value) {
-        System.out.println("value: " + value);
-        //TODO something useful
+        System.out.println("onNext from server");
+
         Map<FieldDescriptor, Object> notification = value.getAllFields();
+        try {
+          Thread.sleep(1000L);
+        } catch (InterruptedException e) {
+          Thread.currentThread().interrupt();
+        }
+        //TODO put new data
+        responseObserver.onNext(SubscribeResponse.getDefaultInstance());
       }
 
       @Override
