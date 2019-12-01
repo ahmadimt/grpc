@@ -8,7 +8,7 @@ dependencies {
 }
 startScripts.enabled = false
 application {
-    mainClassName = 'com.imti.HelloWorldServer'
+    mainClassName = 'com.imti.MetricsServer'
 }
 test {
     useJUnitPlatform()

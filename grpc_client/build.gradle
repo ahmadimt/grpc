@@ -8,7 +8,7 @@ dependencies {
 }
 startScripts.enabled = false
 application {
-    mainClassName = 'com.imti.HelloWorldClient'
+    mainClassName = 'com.imti.GnmiClient'
 }
 test {
     useJUnitPlatform()
