@@ -9,37 +9,23 @@ subprojects {
         jcenter()
 
     }
-    dependencies {
-        testCompile group: 'junit', name: 'junit', version: '4.12'
-        // This dependency is used by the application.
-        implementation 'com.google.guava:guava:28.0-jre'
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
 
+    dependencies {
+
+        implementation 'com.google.guava:guava:28.0-jre'
         implementation "io.grpc:grpc-protobuf:${grpcVersion}"
         implementation "io.grpc:grpc-stub:${grpcVersion}"
-        compileOnly "javax.annotation:javax.annotation-api:1.2"
-
         implementation "com.google.protobuf:protobuf-java:${protobufVersion}"
-
+        compileOnly "javax.annotation:javax.annotation-api:1.2"
         runtimeOnly "io.grpc:grpc-netty-shaded:${grpcVersion}"
 
+        testCompile group: 'junit', name: 'junit', version: '4.12'
         testImplementation "io.grpc:grpc-testing:${grpcVersion}"
         testImplementation "org.mockito:mockito-core:2.25.1"
-
-        // Use JUnit Jupiter API for testing.
         testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.1'
-
-        // Use JUnit Jupiter Engine for testing.
         testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.1'
     }
-    ext {
-        grpcVersion = '1.25.0'
-        protobufVersion = '3.10.0'
-        protocVersion = '3.10.0'
-    }
-
-    def grpcVersion = '1.25.0'
-    def protobufVersion = '3.10.0'
-    def protocVersion = '3.10.0'
-
 }
 

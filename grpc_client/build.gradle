@@ -1,38 +1,15 @@
-// Inform IDEs like IntelliJ IDEA, Eclipse or NetBeans about the generated code.
 plugins {
     id 'java'
     id 'application'
-    id 'com.google.protobuf' version '0.8.10'
     id 'idea'
 }
-sourceSets {
-    main {
-        java {
-            srcDirs 'build/generated/source/proto/main/grpc'
-            srcDirs 'build/generated/source/proto/main/java'
-        }
-    }
+dependencies {
+    compile project(':gnmi')
 }
-
 startScripts.enabled = false
-
 application {
-    // Define the main class for the application.
     mainClassName = 'com.imti.HelloWorldClient'
 }
-
-protobuf {
-    plugins {
-        grpc { artifact = "io.grpc:protoc-gen-grpc-java:${grpcVersion}" }
-    }
-    protoc { artifact = "com.google.protobuf:protoc:${protocVersion}" }
-    generateProtoTasks {
-        all()*.plugins { grpc {} }
-    }
-}
-
-
 test {
-    // Use junit platform for unit tests
     useJUnitPlatform()
 }
