@@ -32,11 +32,8 @@ repositories {
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-def grpcVersion = '1.25.0'
-def protobufVersion = '3.10.0'
-def protocVersion = protobufVersion
-
 dependencies {
+    compile project(':gnmi')
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:28.0-jre'
 
