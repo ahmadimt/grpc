@@ -7,6 +7,7 @@ import com.google.protobuf.TextFormat.ParseException;
 import gnmi.Gnmi.Notification;
 import gnmi.Gnmi.SubscribeRequest;
 import gnmi.Gnmi.SubscribeResponse;
+import gnmi.Gnmi.Update;
 import gnmi.gNMIGrpc.gNMIImplBase;
 import io.grpc.stub.StreamObserver;
 import java.util.Map;
@@ -21,7 +22,7 @@ public class GnmiServer extends gNMIImplBase {
     return new StreamObserver<SubscribeRequest>() {
       @Override
       public void onNext(final SubscribeRequest value) {
-        System.out.println("onNext from server");
+        //message from the client is received here
 
         Map<FieldDescriptor, Object> notification = value.getAllFields();
         try {
@@ -29,8 +30,11 @@ public class GnmiServer extends gNMIImplBase {
         } catch (InterruptedException e) {
           Thread.currentThread().interrupt();
         }
-        //TODO put new data
-        responseObserver.onNext(SubscribeResponse.getDefaultInstance());
+        Update contents = FileResponse.from("subscribeResponse.gnmi");
+        Notification serverNotification = Notification.newBuilder().addUpdate(contents).build();
+        final SubscribeResponse.Builder builder = SubscribeResponse.newBuilder()
+            .mergeUpdate(serverNotification);
+        responseObserver.onNext(builder.build());
       }
 
       @Override
@@ -40,14 +44,7 @@ public class GnmiServer extends gNMIImplBase {
 
       @Override
       public void onCompleted() {
-        String contents = FileResponse.readContentFromFile("hello.proto");
-        final SubscribeResponse.Builder builder = SubscribeResponse.newBuilder();
-        try {
-          TextFormat.merge(contents, builder);
-        } catch (ParseException e) {
-          e.printStackTrace();
-        }
-        responseObserver.onNext(builder.build());
+        //TODO
 
       }
     };

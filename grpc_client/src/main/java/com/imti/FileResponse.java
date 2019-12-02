@@ -2,6 +2,7 @@ package com.imti;
 
 import com.google.protobuf.TextFormat;
 import com.google.protobuf.TextFormat.ParseException;
+import gnmi.Gnmi.SubscribeRequest;
 import gnmi.Gnmi.Update;
 import java.io.File;
 import java.io.IOException;
