@@ -1,38 +1,7 @@
-# Getting Started with gRPC
+# GRPC and GNMI
 
-This is a simple `Hello World!` application, created to learn the basics of gRPC.
-
+This is sample demonstration of how gRPC can be used for BiDirectional streaming.
 ## Project Structure
-The project is a Gradle multi-projects build. 
-
-````
-.
-├── README.md
-├── build.gradle
-├── gradle
-│   └── wrapper
-├── gradlew
-├── gradlew.bat
-├── grpc_client
-│   ├── build
-│   ├── build.gradle
-│   ├── gradle
-│   ├── gradlew
-│   ├── gradlew.bat
-│   ├── out
-│   ├── settings.gradle
-│   └── src
-├── grpc_server
-│   ├── build
-│   ├── build.gradle
-│   ├── gradle
-│   ├── gradlew
-│   ├── gradlew.bat
-│   ├── out
-│   ├── settings.gradle
-│   └── src
-└── settings.gradle
-````
 
 Project `grpc_client` has client specific code while `grpc_server` contains code that are specific for creating server.
 
