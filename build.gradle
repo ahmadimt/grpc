@@ -1,8 +1,31 @@
-
-allprojects {
+subprojects {
+    apply plugin: 'java';
+    apply plugin: 'application';
     repositories {
-        jcenter() 
+        // Use jcenter for resolving dependencies.
+        // You can declare any Maven/Ivy/file repository here.
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+
+    }
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    dependencies {
+
+        implementation 'com.google.guava:guava:28.0-jre'
+        implementation "io.grpc:grpc-protobuf:${grpcVersion}"
+        implementation "io.grpc:grpc-stub:${grpcVersion}"
+        implementation "com.google.protobuf:protobuf-java:${protobufVersion}"
+        compileOnly "javax.annotation:javax.annotation-api:1.2"
+        runtimeOnly "io.grpc:grpc-netty-shaded:${grpcVersion}"
+
+        testCompile group: 'junit', name: 'junit', version: '4.12'
+        testImplementation "io.grpc:grpc-testing:${grpcVersion}"
+        testImplementation "org.mockito:mockito-core:2.25.1"
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.1'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.1'
     }
 }
-
 
